@@ -26,3 +26,5 @@ router.get("/:id", async (req, res) => {
     return res.status(500).json({ success: false, error: err });
   }
 });
+
+module.exports = router;

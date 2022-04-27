@@ -19,6 +19,7 @@ app.use(morgan("tiny"));
 //Routes
 const ordersRoutes = require("./routes/orders");
 
+//http://localhost:3000/api/orders
 app.use(`${api}/orders`, ordersRoutes);
 
 // MongoDB Schemas
@@ -28,7 +29,7 @@ mongoose
   .connect(process.env.CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: "hrapp",
+    dbName: "OrderingSystem",
   })
   .then(() => {
     console.log("Database connection is ready...");

@@ -17,12 +17,9 @@ const orderSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  orderDate: {
+  orderDateTime: {
     type: Date,
     required: true,
-  },
-  orderTime: {
-    type: String,
   },
 });
 orderSchema.virtual("id").get(function () {
