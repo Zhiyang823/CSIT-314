@@ -1,16 +1,20 @@
 const mongoose = require("mongoose");
 // Claim Schema
 const menuSchema = mongoose.Schema({
-  itemName: {
+  foodName: {
     type: String,
+    required: true,
+  },
+  quantity: {
+    type: Number,
     required: true,
   },
   price: {
     type: Number,
     required: true,
   },
-  itemId: {
-    type: String,
+  totalPrice: {
+    type: Number,
     required: true,
   },
 });
