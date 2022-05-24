@@ -3,6 +3,12 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
+const expressLayouts = require("express-ejs-layouts");
+const bodyParser = require("body-parser");
+
+const { Menu } = require("./models/menu");
+
+
 require("dotenv/config");
 
 // get env variables from dotenv
@@ -25,8 +31,6 @@ const billingsRoutes = require("./routes/billings");
 const restaurantsRoutes = require("./routes/restaurants");
 const salesstatisticsRoutes = require("./routes/salesstatistics");
 
-
-
 //http://localhost:3000/api/orders
 app.use(`${api}/orders`, ordersRoutes);
 app.use(`${api}/customers`, customersRoutes);
@@ -37,7 +41,29 @@ app.use(`${api}/restaurants`, restaurantsRoutes);
 app.use(`${api}/salesstatistics`, salesstatisticsRoutes);
 
 
-// MongoDB Schemas
+//Get Data
+app.set("view engine", "ejs");
+app.get("", (req, res) => {
+  Menu.find({}, function (err, menus) {
+    res.render("menupage", {
+      menuList: menus,
+    });
+  });
+});
+
+
+//Post Data
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.post("/", function(req, res){
+
+  let newTest = new Menu({
+    test: req.body.test
+  })
+  newTest.save();
+  res.redirect('/')
+
+})
 
 // Connect to mongoDB
 mongoose
