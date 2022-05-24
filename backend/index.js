@@ -7,6 +7,12 @@ const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
 
 const { Menu } = require("./models/menu");
+const { accounts } = require("./models/accounts");
+const { billings } = require("./models/billings");
+const { Customers } = require("./models/customer");
+const { Order } = require("./models/order");
+const { restaurants } = require("./models/restaurants");
+const { salesstatistics } = require("./models/salesstatistics");
 
 
 require("dotenv/config");
@@ -43,7 +49,7 @@ app.use(`${api}/salesstatistics`, salesstatisticsRoutes);
 
 //Get Data
 app.set("view engine", "ejs");
-app.get("", (req, res) => {
+app.get('', (req, res) => {
   Menu.find({}, function (err, menus) {
     res.render("menupage", {
       menuList: menus,
@@ -55,10 +61,14 @@ app.get("", (req, res) => {
 //Post Data
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.post("/", function(req, res){
+app.get('/informationInput', (req, res) => {
+  res.render('informationInput')
+})
 
-  let newTest = new Menu({
-    test: req.body.test
+app.post('/informationInput', function(req, res){
+
+  let newAccount = new accounts({
+    tablenoinput: req.body.tablenoinput
   })
   newTest.save();
   res.redirect('/')
