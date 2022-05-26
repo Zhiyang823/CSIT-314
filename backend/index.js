@@ -55,13 +55,64 @@ app.get('',(req, res)=>{
   res.render('index')
 })
 
+
 app.get('/menuPage', (req, res) => {
-  Menu.find({}, function (err, menus) {
+  Menu.find({"type": 1}, function (err, menus) {
     res.render("menupage", {
       menuList: menus,
     });
   });
-});
+})
+
+
+app.get('/menuMain', (req, res) => {
+  Menu.find({"type": 2}, function (err, menus) {
+    res.render("menumain", {
+      menuList: menus,
+    });
+  });
+})
+
+app.get('/menuPasta', (req, res) => {
+  Menu.find({"type": 3}, function (err, menus) {
+    res.render("menupasta", {
+      menuList: menus,
+    });
+  });
+})
+
+app.get('/menuSides', (req, res) => {
+  Menu.find({"type": 4}, function (err, menus) {
+    res.render("menusides", {
+      menuList: menus,
+    });
+  });
+})
+
+app.get('/menuDrinks', (req, res) => {
+  Menu.find({"type": 5}, function (err, menus) {
+    res.render("menudrinks", {
+      menuList: menus,
+    });
+  });
+})
+
+app.get('/menuDesserts', (req, res) => {
+  Menu.find({"type": 6}, function (err, menus) {
+    res.render("menudesserts", {
+      menuList: menus,
+    });
+  });
+})
+
+
+app.get('/menuPage', (req, res) => {
+  Customers.find({}, function (err, customers) {
+    res.render("menupage", {
+      customersList: customers,
+    });
+  });
+})
 
 
 //Post Data

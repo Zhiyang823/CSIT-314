@@ -17,6 +17,10 @@ const menuSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  type: {
+    type: Number,
+    required: true,
+  },
 });
 menuSchema.virtual("id").get(function () {
   return this._id.toHexString();
