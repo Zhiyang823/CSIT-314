@@ -49,9 +49,15 @@ app.use(`${api}/salesstatistics`, salesstatisticsRoutes);
 
 //Get Data
 app.set("view engine", "ejs");
-app.get('', (req, res) => {
+
+
+app.get('',(req, res)=>{
+  res.render('index')
+})
+
+app.get('/menuPage', (req, res) => {
   Menu.find({}, function (err, menus) {
-    res.render("CustomerPages/menupage", {
+    res.render("menupage", {
       menuList: menus,
     });
   });
@@ -62,16 +68,20 @@ app.get('', (req, res) => {
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/informationInput', (req, res) => {
-  res.render('CustomerPages/informationInput')
+  res.render('informationInput')
 })
 
-app.post('/informationInput', function(req, res){
+app.post('/', function(req, res){
 
-  let newAccount = new accounts({
-    tablenoinput: req.body.tablenoinput
-  })
-  newTest.save();
-  res.redirect('/')
+  let newCustomer = new Customers({
+    email: req.body.email,
+    mobile: req.body.mobile,
+    name: req.body.name,
+    tableNo: req.body.tableNo
+  });
+
+  newCustomer.save();
+  res.redirect('/menuPage');
 
 })
 

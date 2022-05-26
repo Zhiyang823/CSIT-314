@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 // Claim Schema
 const customersSchema = mongoose.Schema({
-  QRcode: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
@@ -17,11 +13,7 @@ const customersSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  tableNumber: {
-    type: String,
-    required: true,
-  },
-  couponCode: {
+  tableNo: {
     type: String,
     required: true,
   },

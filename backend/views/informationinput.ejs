@@ -16,14 +16,14 @@
 <body>
 
   <div class="container" id="logo">
-    <img src="../Icons/foodlogo.png"> <span>UNPLUGGED</span>
+    <img src="foodlogo.png"> <span>UNPLUGGED</span>
   </div>
 
   <!-- Form Div -->
   <div class="container" id="informationform">
-    <form>
+    <form method="post" action="./">
       <div class="form-group">
-        <select class="form-control" id="tableno" name="tableno" placeholder="TABLE NO">
+        <select class="form-control" id="tableNo" placeholder="TABLE NO" name="tableNo">
           <option>Please Select Table</option>
           <option value="table1">Table 1</option>
           <option value="table2">Table 2</option>
@@ -33,18 +33,18 @@
       </div>
 
       <div class="form-group">
-        <input type="name" class="form-control" id="nameinput" placeholder="NAME">
+        <input type="name" class="form-control" id="nameinput" placeholder="NAME" name="name">
       </div>
 
       <div class="form-group">
-        <input type="email" class="form-control" id="emailinput" placeholder="EMAIL">
+        <input type="email" class="form-control" id="emailinput" placeholder="EMAIL" name="email">
       </div>
 
       <div class="form-group">
-        <input type="phonenum" class="form-control" id="phonenuminput" placeholder="MOBILE NO">
+        <input type="phonenum" class="form-control" id="phonenuminput" placeholder="MOBILE NO" name="mobile">
       </div>
 
-      <button type="button" onclick="window.location='menupage.html';" class="btn">Skip</button>
+      <button type="button" onclick="window.location='menupage.ejs';" class="btn">Skip</button>
       
       <!--Form will be submitted and entered into database-->
       <button type="submit" class="btn">Submit</button>
@@ -52,6 +52,7 @@
     </form>
 
   </div>
+
 
 </body>
 
