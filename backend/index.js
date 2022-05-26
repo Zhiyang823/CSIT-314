@@ -51,7 +51,7 @@ app.use(`${api}/salesstatistics`, salesstatisticsRoutes);
 app.set("view engine", "ejs");
 app.get('', (req, res) => {
   Menu.find({}, function (err, menus) {
-    res.render("menupage", {
+    res.render("CustomerPages/menupage", {
       menuList: menus,
     });
   });
@@ -62,7 +62,7 @@ app.get('', (req, res) => {
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/informationInput', (req, res) => {
-  res.render('informationInput')
+  res.render('CustomerPages/informationInput')
 })
 
 app.post('/informationInput', function(req, res){

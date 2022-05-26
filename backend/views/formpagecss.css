@@ -15,6 +15,16 @@
     padding: 10px;
 }
 
+.form-control{
+    width: 500px;
+    margin: auto;
+}
+
 .btn:hover{
     background-color: grey;
+}
+
+img{
+    height: 100px;
+    width: 100px;
 }
