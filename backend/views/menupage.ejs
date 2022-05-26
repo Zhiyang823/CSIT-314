@@ -56,8 +56,6 @@
 
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark">
-    <button class="btn btn-light" type="button"><a href="/">HOME</a></button>
-
     <div class="container-fluid">
       <img class="icons" src="foodlogo.png">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -66,16 +64,21 @@
       <div class="collapse navbar-collapse" id="mynavbar">
         <span class="navbar-nav me-auto">Unplugged</span>
 
+        <button class="btn btn-light" type="button" style="margin-right: 70%;"><a href="/">HOME</a></button>
+
         <div class="d-flex btn-group-vertical gap-2 p-1">
-          <button class="btn btn-light" type="button" id="orderBtn">VIEW ORDER</button>
-          <button class="btn btn-light" type="button" id="billBtn">VIEW BILL</button>
+          <button class="btn btn-light" type="button" id="orderBtn"><a href = "/viewOrder">VIEW ORDER</a></button>
+          <button class="btn btn-light" type="button" id="billBtn"><a href = "/payment">VIEW BILL</a></button>
         </div>
 
         <div class="d-flex align-middle p-3">
           <img class="icons" src="profile.png">
         </div>
 
-
+        <div class="d-flex align-middle information">
+          <p>[PERSON NAME]</p>
+          
+        </div>
 
       </div>
     </div>
@@ -146,11 +149,10 @@
       </div>
 
       <div class="modal-body">
-        <h2>Your Bill</h2>
+        <h2></h2>
         <div id="order-container">
           <!-- Test Orders -->
           <ul>
-          </ul>
         </div>
 
         <div id="orderinfo">
@@ -171,8 +173,9 @@
           <div class="card" style="width: 50%; margin: auto;">
             <h3><%= menu.foodName %></h3>
             <p>Price: <%= menu.price %></p>
-            <form method="post" action="/">
-                <input type="submit" name=<%= menu.foodName %> value="Add to order" />
+            <form method="post" action="/newOrder">
+                <input type="hidden" id="tableNo" name="tableNo" value="table2">
+                <input type="submit" value= "Add to order" />
             </form>
           </div>
         </div>

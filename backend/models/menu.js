@@ -13,10 +13,6 @@ const menuSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  totalPrice: {
-    type: Number,
-    required: true,
-  },
   type: {
     type: Number,
     required: true,

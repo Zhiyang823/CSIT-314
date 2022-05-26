@@ -21,31 +21,25 @@
 
   <!-- Form Div -->
   <div class="container" id="informationform">
-    <form method="post" action="./">
+    <form method="post" action="./newAccount">
       <div class="form-group">
-        <select class="form-control" id="tableNo" placeholder="TABLE NO" name="tableNo">
-          <option>Please Select Table</option>
-          <option value="table1">Table 1</option>
-          <option value="table2">Table 2</option>
-          <option value="table3">Table 3</option>
-          <option value="table4">Table 4</option>
+        <select class="form-control" id="type" placeholder="ROLE" name="role">
+          <option>Please Select Role</option>
+          <option value="admin">ADMIN</option>
+          <option value="manager">MANAGER</option>
+          <option value="staff">STAFF</option>
         </select>
       </div>
 
       <div class="form-group">
-        <input type="name" class="form-control" id="nameinput" placeholder="NAME" name="name">
+        <input type="name" class="form-control" id="nameinput" placeholder="USERNAME" name="userName">
       </div>
 
       <div class="form-group">
-        <input type="email" class="form-control" id="emailinput" placeholder="EMAIL" name="email">
+        <input type="name" class="form-control" id="emailinput" placeholder="PASSWORD" name="password">
       </div>
 
-      <div class="form-group">
-        <input type="phonenum" class="form-control" id="phonenuminput" placeholder="MOBILE NO" name="mobile">
-      </div>
-
-      <button class="btn btn-light" type="button"><a href="/">BACK</a></button>
-      <button type="button" onclick="window.location='menupage';" class="btn btn-light">Skip</button>
+      <button class="btn btn-light" type="button"><a href="/adminView">BACK</a></button>
       
       <!--Form will be submitted and entered into database-->
       <button type="submit" class="btn btn-light">Submit</button>

@@ -10,15 +10,7 @@ const orderSchema = mongoose.Schema({
     required: true,
   },
   tableNo: {
-    type: Number,
-    required: true,
-  },
-  orderId: {
     type: String,
-    required: true,
-  },
-  orderDateTime: {
-    type: Date,
     required: true,
   },
 });

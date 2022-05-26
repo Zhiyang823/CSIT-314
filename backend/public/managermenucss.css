@@ -1,0 +1,33 @@
+nav{
+    border-bottom: solid 0.5px black;
+}
+
+.nav-item{
+    padding: 5px;
+}
+
+.icons{
+    height: 40px;
+    width: 40px;
+}
+
+#menu-container{
+    margin: auto;
+    margin-top: 100px;
+    border: 1px solid black;
+    height: 100%;
+    width: 75%;
+}
+
+#menu-buttons{
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.menubtn{
+    margin: 10px;
+    width: 400px;
+    height: 50px;
+}

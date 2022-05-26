@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script>
+
+    function random(){
+        document.getElementById("randomNumber").innerHTML = Math.floor(Math.random() * 314545836);
+    }
+
+</script>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,14 +21,15 @@
     <title>Payment</title>
 </head>
 
-<body>
+<body onload="random()">
 
     <div id="payment-container" style="display:flex;">
         <div id="left-container">
+            <button class="btn btn-light" type="button" style="margin-right: 80%;"><a href="/menuPage">BACK</a></button>
             <div id="receiptno">
-                <span>Receipt No. xxxxx</span>
+                <span>Receipt No. </span>
+                <p id="randomNumber"></p>
             </div>
-
 
             <div id="total-amount">
                 <span id="amount">$38.40</span>
@@ -33,47 +42,24 @@
             <div id="pay-info">Please proceed to the counter for payment</div>
         </div>
 
+
+        
         <div id="right-container">
             <div class="modal-body">
-                <h2>Name</h2>
-                <h3>Your Order</h3>
+                
+                    <p>Table Number: 2</p>
+
+                
                 <div id="order-container">
                     <!-- Test Orders -->
+                    <h3>Your Order</h3>
+                    <%orderList.forEach(order => {%>
                     <ul>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
-                        <li>Order 1</li>
+                        <li><%= order.itemId %> <%= order.itemPrice %></li>
                     </ul>
+                    <%})%>
                 </div>
+                
 
                 <div id="orderinfo">
                     <input type="text" id="couponcode" placeholder="ADD COUPON CODE"><br>

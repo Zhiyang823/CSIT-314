@@ -49,13 +49,14 @@ app.use(`${api}/salesstatistics`, salesstatisticsRoutes);
 
 //Get Data
 app.set("view engine", "ejs");
-
+app.use( express.static( "public" ) );
 
 app.get('',(req, res)=>{
   res.render('index')
 })
 
 
+//Customer view
 app.get('/menuPage', (req, res) => {
   Menu.find({"type": 1}, function (err, menus) {
     res.render("menupage", {
@@ -63,8 +64,6 @@ app.get('/menuPage', (req, res) => {
     });
   });
 })
-
-
 app.get('/menuMain', (req, res) => {
   Menu.find({"type": 2}, function (err, menus) {
     res.render("menumain", {
@@ -72,7 +71,6 @@ app.get('/menuMain', (req, res) => {
     });
   });
 })
-
 app.get('/menuPasta', (req, res) => {
   Menu.find({"type": 3}, function (err, menus) {
     res.render("menupasta", {
@@ -80,7 +78,6 @@ app.get('/menuPasta', (req, res) => {
     });
   });
 })
-
 app.get('/menuSides', (req, res) => {
   Menu.find({"type": 4}, function (err, menus) {
     res.render("menusides", {
@@ -88,7 +85,6 @@ app.get('/menuSides', (req, res) => {
     });
   });
 })
-
 app.get('/menuDrinks', (req, res) => {
   Menu.find({"type": 5}, function (err, menus) {
     res.render("menudrinks", {
@@ -96,7 +92,6 @@ app.get('/menuDrinks', (req, res) => {
     });
   });
 })
-
 app.get('/menuDesserts', (req, res) => {
   Menu.find({"type": 6}, function (err, menus) {
     res.render("menudesserts", {
@@ -105,14 +100,90 @@ app.get('/menuDesserts', (req, res) => {
   });
 })
 
-
-app.get('/menuPage', (req, res) => {
-  Customers.find({}, function (err, customers) {
-    res.render("menupage", {
-      customersList: customers,
+app.get('/payment', (req, res) => {
+  Order.find({}, function (err, orders) {
+    res.render("customerpaymentpage", {
+      orderList: orders,
     });
   });
 })
+
+app.get('/viewOrder', (req, res) => {
+  Order.find({}, function (err, orders) {
+    res.render("vieworder", {
+      orderList: orders,
+    });
+  });
+})
+
+//admin view
+app.get('/admin', (req, res) => {
+  res.render('adminloginpage')
+})
+
+app.get('/adminView', (req, res) => {
+  accounts.find({}, function (err, accounts) {
+    res.render("adminview", {
+      accountsList: accounts,
+    });
+  });
+})
+
+app.get('/addAccounts', (req, res) => {
+  res.render('addaccounts')
+})
+
+
+
+
+//manager view
+app.get('/manager', (req, res) => {
+  res.render('managerloginpage')
+})
+
+app.get('/managerMenu', (req, res) => {
+  res.render('managermenu')
+})
+
+
+app.get('/viewMenu', (req, res) => {
+  Menu.find({}, function (err, menus) {
+    res.render("viewmenu", {
+      menuList: menus,
+    });
+  });
+})
+
+app.get('/addItem', (req, res) => {
+  res.render('additem')
+})
+
+
+
+
+//staff view
+app.get('/staff', (req, res) => {
+  res.render('staffloginpage')
+})
+
+
+app.get('/staffMenu', (req, res) => {
+  Order.find({}, function (err, orders) {
+    res.render("staffmenupage", {
+      orderList: orders,
+    });
+  });
+})
+
+app.get('/editOrder', (req, res) => {
+  Order.find({}, function (err, orders) {
+    res.render("editorderpage", {
+      orderList: orders,
+    });
+  });
+})
+
+
 
 
 //Post Data
@@ -122,6 +193,7 @@ app.get('/informationInput', (req, res) => {
   res.render('informationInput')
 })
 
+//new customer
 app.post('/', function(req, res){
 
   let newCustomer = new Customers({
@@ -133,6 +205,50 @@ app.post('/', function(req, res){
 
   newCustomer.save();
   res.redirect('/menuPage');
+
+})
+
+//add new order
+app.post('/newOrder', function(req, res){
+
+  let newOrder = new Order({
+    itemId: req.body.itemId,
+    itemPrice: req.body.itemId,
+    tableNo: req.body.tableNo,
+  });
+
+  newOrder.save();
+  res.redirect('/menuPage');
+
+})
+
+//add new items
+app.post('/newItem', function(req, res){
+
+  let newMenu = new Menu({
+    foodName: req.body.foodName,
+    quantity: req.body.quantity,
+    price: req.body.price,
+    type: req.body.type
+  });
+
+  newMenu.save();
+  res.redirect('/viewMenu');
+
+})
+
+
+//new accounts
+app.post('/newAccount', function(req, res){
+
+  let newAccount = new accounts({
+    userName: req.body.userName,
+    password: req.body.password,
+    role: req.body.role,
+  });
+
+  newAccount.save();
+  res.redirect('/adminView');
 
 })
 

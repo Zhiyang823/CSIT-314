@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const orderList = await Order.find({ orderId: req.params.id });
+    const orderList = await Order.find({ itemId: req.params.id });
     if (!orderList) {
       res
         .status(500)
