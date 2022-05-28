@@ -13,6 +13,14 @@ const salesstatisticsSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  spending: {
+    type: String,
+    required: true,
+  },
+  rank: {
+    type: Number,
+    required: true,
+  },
 });
 salesstatisticsSchema.virtual("id").get(function () {
   return this._id.toHexString();

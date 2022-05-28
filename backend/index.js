@@ -13,6 +13,7 @@ const { Customers } = require("./models/customer");
 const { Order } = require("./models/order");
 const { restaurants } = require("./models/restaurants");
 const { salesstatistics } = require("./models/salesstatistics");
+const { Coupon } = require("./models/coupons");
 
 
 require("dotenv/config");
@@ -36,6 +37,7 @@ const accountsRoutes = require("./routes/accounts");
 const billingsRoutes = require("./routes/billings");
 const restaurantsRoutes = require("./routes/restaurants");
 const salesstatisticsRoutes = require("./routes/salesstatistics");
+const couponRoutes = require("./routes/coupons");
 
 //http://localhost:3000/api/orders
 app.use(`${api}/orders`, ordersRoutes);
@@ -45,6 +47,7 @@ app.use(`${api}/accounts`, accountsRoutes);
 app.use(`${api}/billings`, billingsRoutes);
 app.use(`${api}/restaurants`, restaurantsRoutes);
 app.use(`${api}/salesstatistics`, salesstatisticsRoutes);
+app.use(`${api}/coupon`, couponRoutes);
 
 
 //Get Data
@@ -158,6 +161,34 @@ app.get('/addItem', (req, res) => {
   res.render('additem')
 })
 
+app.get('/topCustomer', (req, res) => {
+  salesstatistics.find({"rank": 1}, function (err, salesstatistics) {
+    res.render("topcustomer", {
+      ssList: salesstatistics,
+    });
+  });
+})
+
+app.get('/trackSpending', (req, res) => {
+  salesstatistics.find({}, function (err, salesstatistics) {
+    res.render("trackspending", {
+      ssList: salesstatistics,
+    });
+  });
+})
+
+app.get('/viewCoupon', (req, res) => {
+  Coupon.find({}, function (err, coupons) {
+    res.render("viewcoupons", {
+      couponsList: coupons,
+    });
+  });
+})
+
+
+app.get('/addCoupon', (req, res) => {
+  res.render('addcoupon')
+})
 
 
 
@@ -249,6 +280,21 @@ app.post('/newAccount', function(req, res){
 
   newAccount.save();
   res.redirect('/adminView');
+
+})
+
+
+//new coupon
+app.post('/newCoupon', function(req, res){
+
+  let newCoupon = new Coupon({
+    couponName: req.body.couponName,
+    couponCode: req.body.couponCode,
+    discountAmount: req.body.discountAmount,
+  });
+
+  newCoupon.save();
+  res.redirect('/viewCoupon');
 
 })
 
